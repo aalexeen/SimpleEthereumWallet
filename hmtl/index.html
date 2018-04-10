@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title> My own Ethereum wallet </title>
+	<link rel="stylesheet" type="text/css" href="donuts.css" />
+	<script type = "text/javascript">
+		var ballance;
+		function getTheBallance() {
+	    <!--document.getElementById("ballance").innerHTML = -->
+
+			web3.eth.getBalance(web3.eth.accounts[0],
+				function(error, result) {
+                    document.getElementById("ballance").innerHTML = web3.fromWei(result.toNumber());
+				} );
+        	//document.getElementById("ballance").innerHTML = ballance;
+		}
+
+
+		if (typeof web3 !== 'undefined') {
+       	 web3 = new Web3(web3.currentProvider);
+    	} else {
+        	// set the provider you want from Web3.providers
+        	web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  		}
+
+
+	</script>
+
+    </head>
+    
+    <body onload="getTheBallance()">
+	<!-- something -->
+	<b id="ballance" name="ballance" ></b>
+    </body>
+</html>
