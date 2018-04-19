@@ -6,18 +6,33 @@
     <link rel="stylesheet" type="text/css" href="wallet.css" />
     <script type = "text/javascript">
 
-        function getTheBallance() {
+        var balance;
+
+        function getTheBalance() {
             web3.eth.getBalance(web3.eth.accounts[0],
                 function(error, result) {
-                    document.getElementById("ballance").innerHTML = web3.fromWei(result.toNumber());
+                    if(!error)
+                        balance = web3.fromWei(result.toNumber());
+                    else
+                        console.error(error);
                 } );
+        }
+
+        function viewTheBalance() {
+            //getTheBalance();
+            document.getElementById("balance").innerHTML = balance;
         }
 
     </script>
 
 </head>
 
-<body onload="getTheBallance()">
-<b id="ballance" name="ballance" ></b>
+<body onload="getTheBalance();">
+
+<p/>
+<input type="button" value="Get the Balance" onclick="viewTheBalance();" />
+<p/>
+<b id="balance" name="balance" ></b>
+
 </body>
 </html>
